@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Company O.P.A. - Conectando...</title>
+    <style>
+        /* Estilos para asegurar que el video ocupe toda la pantalla */
+        body {
+            margin: 0;
+            overflow: hidden; /* Evita las barras de desplazamiento */
+            background-color: #000; /* Fondo negro por si el video tarda en cargar */
+        }
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #intro-video {
+            width: 100%;
+            height: 100%;
+            /* 'contain' asegura que todo el video sea visible, sin zoom ni recortes */
+            object-fit: contain; 
+        }
+
+        /* Estilos para los botones de control del video */
+        #video-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 15px; /* Espacio entre los botones */
+        }
+        .control-button {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background 0.3s;
+        }
+        .control-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .control-button svg {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <!-- 
+          Video con autoplay y sin 'muted' para que inicie con sonido.
+          'playsinline' es para una mejor experiencia en móviles.
+        -->
+        <video autoplay playsinline id="intro-video">
+            <source src="Intro.mp4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+
+        <!-- Controles para el video (Mute y Skip) -->
+        <div id="video-controls">
+            <button id="mute-btn" class="control-button" title="Silenciar">
+                <!-- Icono de Sonido Activado -->
+                <svg id="icon-sound-on" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07"></path>
+                </svg>
+                <!-- Icono de Sonido Desactivado (inicialmente oculto) -->
+                <svg id="icon-sound-off" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"></path>
+                </svg>
+            </button>
+            <button id="skip-btn" class="control-button" title="Saltar video">
+                <!-- Icono de Cruz (X) -->
+                <svg fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.getElementById('intro-video');
+            const muteBtn = document.getElementById('mute-btn');
+            const skipBtn = document.getElementById('skip-btn');
+            const iconSoundOn = document.getElementById('icon-sound-on');
+            const iconSoundOff = document.getElementById('icon-sound-off');
+
+            function redirectToHome() {
+                window.location.href = 'home.html';
+            }
+
+            // El video puede ser bloqueado por el navegador si tiene sonido.
+            // Intentamos reproducirlo, y si falla, lo silenciamos para que el usuario pueda activarlo.
+            video.play().catch(error => {
+                console.warn("Autoplay con sonido bloqueado. El video iniciará en silencio.");
+                video.muted = true;
+                updateMuteIcon();
+            });
+            
+            // Redirige cuando el video termina
+            video.addEventListener('ended', redirectToHome);
+            // Redirige si hay un error cargando el video
+            video.addEventListener('error', () => {
+                console.error("Error al cargar el video. Redirigiendo a la página principal.");
+                redirectToHome();
+            });
+
+            // Función para actualizar el icono de sonido
+            function updateMuteIcon() {
+                if (video.muted) {
+                    iconSoundOn.style.display = 'none';
+                    iconSoundOff.style.display = 'block';
+                    muteBtn.title = "Activar sonido";
+                } else {
+                    iconSoundOn.style.display = 'block';
+                    iconSoundOff.style.display = 'none';
+                    muteBtn.title = "Silenciar";
+                }
+            }
+            
+            // Evento para el botón de silenciar
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                updateMuteIcon();
+            });
+
+            // Evento para el botón de saltar
+            skipBtn.addEventListener('click', redirectToHome);
+            
+            // Sincroniza el ícono si el estado de mute cambia por otra razón
+            video.addEventListener('volumechange', updateMuteIcon);
+
+            // Inicializa el ícono al cargar la página
+            updateMuteIcon();
+        });
+    </script>
+</body>
+</html>

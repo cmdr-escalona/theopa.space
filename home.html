@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Company O.P.A. - Sitio Funcional</title>
+    <!-- Scripts y Fuentes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <!-- Estilos CSS -->
+    <style>
+        body {
+            font-family: 'Special Elite', cursive;
+            background-color: #0D0D0D;
+            color: #b0b0b0;
+        }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .scanlines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: flicker 0.15s infinite;
+        }
+        @keyframes flicker { 0% { opacity: 0.9; } 50% { opacity: 0.7; } 100% { opacity: 0.9; } }
+        .glow { color: #00e5ff; text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff; }
+        .glow-amber { color: #ffc107; text-shadow: 0 0 5px #ffc107, 0 0 10px #ffc107; }
+        .glow-red { color: #ff4d4d; text-shadow: 0 0 5px #ff4d4d, 0 0 10px #ff4d4d; }
+        .content-card { background-color: rgba(0, 0, 0, 0.5); border-left: 3px solid #00e5ff; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+        .list-item { display: flex; align-items: flex-start; margin-top: 0.75rem; }
+        .list-item i { flex-shrink: 0; margin-top: 4px; color: #00e5ff; }
+        .hidden { display: none; }
+        .nav-link { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; padding-bottom: 4px; cursor: pointer; }
+        .nav-link.active, .nav-link:hover { color: #00e5ff; text-shadow: 0 0 5px #00e5ff; border-bottom-color: #00e5ff; }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-black">
+    <div class="scanlines"></div>
+    <!-- NAVEGACIÓN -->
+    <nav class="sticky top-0 bg-black/80 backdrop-blur-sm z-50 border-b border-cyan-500/20 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <a data-target="page-home" class="nav-link flex items-center mb-2 md:mb-0">
+                    <img src="https://i.imgur.com/cqxzrKH.png" alt="Logo OPA" class="h-8 w-auto mr-3">
+                    <span class="font-orbitron text-xl text-white">The Company O.P.A.</span>
+                </a>
+                <div class="flex items-center space-x-4 text-sm md:text-base">
+                    <a data-target="page-home" class="nav-link active">Home</a>
+                    <a data-target="page-lore" class="nav-link">Lore</a>
+                    <a data-target="page-estructura" class="nav-link">Estructura</a>
+                    <a data-target="page-conducta" class="nav-link">Conducta</a>
+                    <a href="https://discord.gg/Z6gWHrMH52" target="_blank" class="nav-link flex items-center">
+                        <i data-lucide="message-square" class="w-4 h-4 mr-2"></i> Discord
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENEDOR DE PÁGINAS -->
+    <div id="content-container" class="container mx-auto px-4">
+        <!-- Contenido de Home (Visible por defecto) -->
+        <section id="page-home" class="page-content fade-in">
+            <div class="flex flex-col items-center justify-center min-h-[calc(100vh-6rem)] py-8">
+                <header class="text-center mb-8">
+                    <div class="inline-block relative">
+                        <img src="https://i.imgur.com/cqxzrKH.png" alt="Logo de The Company O.P.A." class="w-40 h-40 md:w-48 md:h-48 mx-auto object-cover opacity-80">
+                    </div>
+                    <h1 class="font-orbitron text-3xl md:text-4xl glow mt-6">The Company O.P.A.</h1>
+                    <p class="text-cyan-200 mt-2 text-sm md:text-base">[OPTC] – “Los gobiernos pelean guerras. Nosotros decidimos quién las gana.”</p>
+                </header>
+                <main class="max-w-3xl w-full text-center space-y-8">
+                    <section><p class="text-lg leading-relaxed">Si estás buscando reconocimiento, sigue buscando.<br>Si buscas resultados, quizá ya estés trabajando para nosotros... y no lo sepas.</p></section>
+                    <section class="content-card p-6 rounded-lg text-left"><p class="leading-relaxed">Somos una célula táctica encubierta, sin bandera ni lealtad declarada. Operamos en zonas grises, en guerras que no salen en los reportes GalNet. Contrabando, guerra silenciosa, manipulación económica, extracción de activos, protección de intereses… si tiene valor, lo reclamamos. Si es secreto, lo sabemos. Si arde, probablemente lo encendimos.</p><p class="mt-4 italic">Nos hacemos llamar La Compañía, pero no vendemos nada. Solo decidimos quién sobrevive y quién desaparece sin dejar rastro.</p></section>
+                    <section class="content-card p-6 rounded-lg text-left"><h2 class="font-orbitron text-xl md:text-2xl mb-4 glow">¿Qué ofrecemos?</h2><div class="space-y-3"><div class="list-item"><i data-lucide="swords" class="w-5 h-5 mr-3"></i><span>Operaciones PvE y PvP narrativas</span></div><div class="list-item"><i data-lucide="milestone" class="w-5 h-5 mr-3"></i><span>Sistema de progresión interna con méritos y secretos</span></div><div class="list-item"><i data-lucide="message-square" class="w-5 h-5 mr-3"></i><span>Discord activo con tácticas, misiones y recompensas simbólicas</span></div><div class="list-item"><i data-lucide="theater" class="w-5 h-5 mr-3"></i><span>Rol completamente inmersivo dentro del universo de The Expanse</span></div><div class="list-item"><i data-lucide="server-cog" class="w-5 h-5 mr-3"></i><span>Participación real en manipulación BGS, conflictos, comercio y sabotaje</span></div></div></section>
+                    <section class="text-center mt-10"><a href="https://discord.gg/Z6gWHrMH52" target="_blank" class="inline-block bg-cyan-500 text-black font-orbitron font-bold py-3 px-8 rounded-lg hover:bg-cyan-400 transition-colors duration-300 glow">Unirse al Canal Seguro [Discord]</a></section>
+                </main>
+                <footer class="text-center mt-12"><p class="text-cyan-200 italic text-sm md:text-base">“Somos lo que queda cuando los demás se rinden. Somos la sombra que no ves venir.”</p></footer>
+            </div>
+        </section>
+
+        <!-- Contenido de Lore (Actualizado) -->
+        <section id="page-lore" class="page-content hidden max-w-4xl mx-auto space-y-8 py-8 md:py-12">
+            <header class="text-center mb-8"><h1 class="font-orbitron text-3xl md:text-4xl glow">[Transmisión Encriptada Recibida]</h1></header>
+            <section class="content-card p-6 rounded-lg"><h2 class="font-orbitron text-2xl md:text-3xl mb-4 flex items-center glow"><i data-lucide="orbit" class="w-7 h-7 mr-3"></i>Génesis: La Sombra del Cinto</h2><p class="text-base md:text-lg leading-relaxed">En los vastos y turbulentos confines de la galaxia, donde las superpotencias trazan líneas con el acero de sus flotas, existe una fuerza que no figura en los registros. No ondean bandera. Operan en el ruido de fondo. Se hacen llamar The Company O.P.A., y su negocio es el equilibrio.<br><br>Nacimos de la desilusión, como una evolución de la O.P.A. original. Rechazamos la guerra abierta por un lenguaje que los poderosos no dominan: el silencio. Somos una célula autónoma y encubierta, el catalizador invisible que restaura el orden donde otros siembran el caos.</p></section>
+            <section class="content-card p-6 rounded-lg"><h2 class="font-orbitron text-2xl md:text-3xl mb-4 flex items-center glow"><i data-lucide="brain-circuit" class="w-7 h-7 mr-3"></i>La Doctrina: Protocolo Echo</h2><p class="text-base md:text-lg leading-relaxed">El corazón de nuestra filosofía es el Protocolo Echo, nuestra justificación para la manipulación a gran escala. No intervenimos con flotas, sino con datos, sabotajes y guerra psicológica. Desacreditamos facciones, hundimos economías y dirigimos conflictos sin disparar un solo tiro.</p><blockquote class="border-l-4 border-cyan-400 pl-4 italic text-cyan-200 my-4">"Los gobiernos pelean guerras. Nosotros decidimos quién las gana."</blockquote></section>
+            <section class="content-card p-6 rounded-lg"><h2 class="font-orbitron text-2xl md:text-3xl mb-4 flex items-center glow"><i data-lucide="shield" class="w-7 h-7 mr-3"></i>Anatomia de la Célula</h2><p class="text-base md:text-lg leading-relaxed">Operamos con la eficiencia de una corporación y el secretismo de un culto. Un Director en la cúspide, protegido por la Directiva 7. Jefes de Célula que actúan como mentores. Y una columna vertebral de Operativos de Campo: especialistas en combate, logística, exploración y sabotaje. Cada pieza tiene su función. Cada función es crítica.</p></section>
+            <section class="content-card p-6 rounded-lg"><h2 class="font-orbitron text-2xl md:text-3xl mb-4 flex items-center glow"><i data-lucide="user-check" class="w-7 h-7 mr-3"></i>El Camino del Operativo</h2><p class="text-base md:text-lg leading-relaxed">Nadie se une por casualidad. El reclutamiento es una invitación susurrada. El aspirante es un "eco nuevo", sometido a pruebas de habilidad, lealtad y sigilo. Cada acto queda inmortalizado en el Libro de Méritos y Sangre. Ser un Operativo es vivir una doble vida, donde la mayor victoria es que el universo nunca sepa que estuviste allí.</p></section>
+            <footer class="text-center mt-4"><p class="text-xs text-gray-500">[Fin de la Transmisión]</p></footer>
+        </section>
+        
+        <!-- Contenido de Estructura (Actualizado) -->
+        <section id="page-estructura" class="page-content hidden max-w-6xl mx-auto space-y-12 py-8 md:py-12">
+            <header class="text-center mb-8"><h1 class="font-orbitron text-3xl md:text-4xl glow">Estructura Operativa</h1><p class="text-gray-500 text-sm mt-1">[Protocolo de Rangos // Acceso Autorizado]</p></header>
+            <section><h2 class="font-orbitron text-2xl md:text-3xl mb-6 text-center glow">Jerarquía Central</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="content-card p-6 rounded-lg"><h3 class="font-orbitron text-xl mb-3 flex items-center glow-amber"><i data-lucide="crown" class="w-6 h-6 mr-3"></i>Director (Líder Supremo)</h3><p class="italic text-gray-400 mb-4">Máxima autoridad en decisiones estratégicas y disciplinarias.</p><p><strong class="text-gray-200">Función:</strong> Toma las decisiones estratégicas. Supervisa la estructura y mantiene la cohesión ideológica. Última palabra en conflictos internos.</p></div>
+                <div class="content-card p-6 rounded-lg"><h3 class="font-orbitron text-xl mb-3 flex items-center glow-amber"><i data-lucide="user-cog" class="w-6 h-6 mr-3"></i>Oficiales de Enlace (Jefes de Célula)</h3><p class="italic text-gray-400 mb-4">Pilotos experimentados responsables de dirigir equipos y reclutar.</p><p class="mb-3"><strong class="text-gray-200">Función:</strong> Coordina operaciones, entrena operativos y representa al Director.</p><p><strong class="text-gray-200">Requisitos de Ascenso:</strong></p><ul class="list-disc list-inside text-gray-400 text-sm space-y-1"><li>Mínimo 2 semanas como Operativo.</li><li>Participación en 3+ misiones coordinadas.</li><li>Evaluación directa por el Director.</li><li>Buena reputación interna.</li></ul></div>
+                <div class="content-card p-6 rounded-lg"><h3 class="font-orbitron text-xl mb-3 flex items-center glow-amber"><i data-lucide="shield-half" class="w-6 h-6 mr-3"></i>Operativos de Campo (Pilotos Activos)</h3><p class="italic text-gray-400 mb-4">La columna vertebral de la flota. Ejecutan misiones y tareas.</p><p class="mb-3"><strong class="text-gray-200">Función:</strong> Ejecuta misiones, responde a llamadas de combate y participa en operaciones PvE/PvP/BGS.</p><p><strong class="text-gray-200">Requisitos de Ascenso:</strong></p><ul class="list-disc list-inside text-gray-400 text-sm space-y-1"><li>Participación activa en eventos y misiones.</li><li>Iniciativa y reporte constante de actividad.</li><li>Lealtad demostrada.</li></ul></div>
+                <div class="content-card p-6 rounded-lg"><h3 class="font-orbitron text-xl mb-3 flex items-center glow-amber"><i data-lucide="user-x" class="w-6 h-6 mr-3"></i>Agentes Durmientes (Reservistas)</h3><p class="italic text-gray-400 mb-4">Pilotos inactivos pero con potencial de reintegración.</p><p class="mb-3"><strong class="text-gray-200">Función:</strong> Estatus pasivo. No participa activamente pero no está expulsado.</p><p><strong class="text-gray-200">Protocolo de Reactivación:</strong></p><ul class="list-disc list-inside text-gray-400 text-sm space-y-1"><li>Solicitud voluntaria.</li><li>Participación en una misión de reintegración.</li></ul></div>
+            </div></section>
+            <section><h2 class="font-orbitron text-2xl md:text-3xl mb-6 text-center glow">Asignaciones Tácticas (Especialistas)</h2><p class="text-center text-sm text-gray-400 -mt-4 mb-6">Estas no son rangos jerárquicos, sino asignaciones paralelas al rol de Operativo o Jefe de Célula.</p><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="content-card p-6 rounded-lg"><h3 class="font-orbitron text-xl mb-3 flex items-center glow-amber"><i data-lucide="crosshair" class="w-6 h-6 mr-3"></i>Asesinos de Thargoides (Anti-Xeno)</h3><p class="mb-3"><strong class="text-gray-200">Función:</strong> Especializados en combate contra los Thargoides.</p><p><strong class="text-gray-200">Requisitos:</strong></p><ul class="list-disc list-inside text-gray-400 text-sm space-y-1"><li>Experiencia en combate AX.</li><li>Dominio de builds AX (armas guardián, etc.).</li></ul></div>
+                <div class="content-card p-6 rounded-lg"><h3 class="font-orbitron text-xl mb-3 flex items-center glow-amber"><i data-lucide="swords" class="w-6 h-6 mr-3"></i>PvP Enforcer (Interdictores)</h3><p class="mb-3"><strong class="text-gray-200">Función:</strong> Expertos en combate contra otros jugadores.</p><p><strong class="text-gray-200">Requisitos:</strong></p><ul class="list-disc list-inside text-gray-400 text-sm space-y-1"><li>Participación en combates PvP.</li><li>Buen manejo de interdicción y builds PvP.</li></ul></div>
+                <div class="content-card p-6 rounded-lg"><h3 class="font-orbitron text-xl mb-3 flex items-center glow-amber"><i data-lucide="truck" class="w-6 h-6 mr-3"></i>Logística y Abastecimiento</h3><p class="mb-3"><strong class="text-gray-200">Función:</strong> Aseguran recursos y créditos esenciales (Comercio/Minería).</p><p><strong class="text-gray-200">Requisitos:</strong></p><ul class="list-disc list-inside text-gray-400 text-sm space-y-1"><li>Nave equipada para minería o comercio.</li><li>Reporte de contribución logística.</li></ul></div>
+                <div class="content-card p-6 rounded-lg"><h3 class="font-orbitron text-xl mb-3 flex items-center glow-amber"><i data-lucide="eye" class="w-6 h-6 mr-3"></i>Inteligencia y Reconocimiento</h3><p class="mb-3"><strong class="text-gray-200">Función:</strong> Recopilan información y localizan objetivos (Exploradores/Espías).</p><p><strong class="text-gray-200">Requisitos:</strong></p><ul class="list-disc list-inside text-gray-400 text-sm space-y-1"><li>Experiencia con módulos de exploración y sigilo.</li><li>Capacidad de generar reportes de inteligencia.</li></ul></div>
+                <div class="content-card p-6 rounded-lg"><h3 class="font-orbitron text-xl mb-3 flex items-center glow-amber"><i data-lucide="venetian-mask" class="w-6 h-6 mr-3"></i>Saboteadores (Piratas)</h3><p class="mb-3"><strong class="text-gray-200">Función:</strong> Operaciones encubiertas y control de recursos enemigos.</p><p><strong class="text-gray-200">Requisitos:</strong></p><ul class="list-disc list-inside text-gray-400 text-sm space-y-1"><li>Participación en operación encubierta.</li><li>Conocimiento de piratería o manipulación BGS.</li></ul></div>
+            </div></section>
+        </section>
+        
+        <!-- Contenido de Conducta (Actualizado) -->
+        <section id="page-conducta" class="page-content hidden max-w-4xl mx-auto space-y-8 py-8 md:py-12">
+             <header class="text-center mb-8"><h1 class="font-orbitron text-3xl md:text-4xl glow">Protocolos de Conducta</h1><p class="text-gray-500 text-sm mt-1">[Directiva de Comportamiento // Nivel de Acceso Operativo]</p></header>
+             <section class="content-card p-6 rounded-lg"><h2 class="font-orbitron text-2xl md:text-3xl mb-4 flex items-center glow"><i data-lucide="theater" class="w-7 h-7 mr-3"></i>Filosofía Operativa (Fuera de Rol)</h2><p class="text-base md:text-lg leading-relaxed">Para nosotros, el rol es el alma de la facción. No nos limitamos a cumplir objetivos; tejemos una narrativa colectiva donde cada operativo es un protagonista. Te invitamos a sumergirte, a darle profundidad a tu personaje y a dejar una huella en este universo que construimos juntos. Buscamos pilotos que deseen ser parte de algo memorable, una historia de sigilo e impacto que vaya más allá del juego convencional.</p></section>
+             <section class="content-card p-6 rounded-lg"><h2 class="font-orbitron text-2xl md:text-3xl mb-4 flex items-center glow"><i data-lucide="radio-tower" class="w-7 h-7 mr-3"></i>Protocolos de Comunicación (Discord)</h2><div class="space-y-4"><div class="list-item"><i data-lucide="chevrons-right" class="w-5 h-5 mr-3"></i><span><strong>Sigilo Informativo:</strong> La discreción es tu principal arma. Lo que se discute en canales clasificados, muere en ellos. La filtración de información, intencionada o no, se considera traición a la Directiva.</span></div><div class="list-item"><i data-lucide="chevrons-right" class="w-5 h-5 mr-3"></i><span><strong>Economía de Palabras:</strong> Comunica de forma clara, táctica y directa. En canales operativos, el rol es bienvenido, pero el ruido es inaceptable. Los canales de descanso son para el ocio; el resto es para la misión.</span></div><div class="list-item"><i data-lucide="chevrons-right" class="w-5 h-5 mr-3"></i><span><strong>Respeto a la Jerarquía:</strong> Las menciones generales (@everyone/@here) son exclusivas del Comando. Las órdenes fluyen desde arriba. Cuestiona en privado, obedece en público.</span></div></div></section>
+             <section class="content-card p-6 rounded-lg"><h2 class="font-orbitron text-2xl md:text-3xl mb-4 flex items-center glow"><i data-lucide="gamepad-2" class="w-7 h-7 mr-3"></i>Protocolos de Actuación (En Juego)</h2><div class="space-y-4"><div class="list-item"><i data-lucide="chevrons-right" class="w-5 h-5 mr-3"></i><span><strong>La Máscara es tu Identidad:</strong> En el espacio, no eres de The Company. Eres un comerciante, un mercenario, un explorador. Tus acciones nunca deben trazar una línea directa hacia nosotros. La negación plausible es nuestra sombra.</span></div><div class="list-item"><i data-lucide="chevrons-right" class="w-5 h-5 mr-3"></i><span><strong>Interacción Controlada:</strong> El contacto con agentes externos debe ser mínimo y críptico. No reveles tu afiliación, tus objetivos ni tus capacidades. Eres un fantasma en sus escáneres.</span></div><div class="list-item"><i data-lucide="chevrons-right" class="w-5 h-5 mr-3"></i><span><strong>Precisión Quirúrgica:</strong> Cada misión tiene un objetivo. Cúmplelo con eficiencia y sin desviaciones. Los daños colaterales son ruido, y el ruido atrae atención no deseada. Reporta tus resultados con exactitud.</span></div></div></section>
+             <section class="content-card p-6 rounded-lg border-l-red-500"><h2 class="font-orbitron text-2xl md:text-3xl mb-4 flex items-center glow-red"><i data-lucide="scale" class="w-7 h-7 mr-3"></i>Matriz Disciplinaria</h2>
+                <div class="space-y-3">
+                    <p><strong>Falta Leves:</strong> Interrupciones, lenguaje fuera de tono. <strong>Sanción:</strong> Advertencia verbal privada.</p>
+                    <p><strong>Falta Medias:</strong> Ausencias sin aviso, sabotaje no autorizado. <strong>Sanción:</strong> Degradación temporal o asignación a estatus de "Durmiente".</p>
+                    <p><strong>Falta Graves:</strong> Filtración de información, desobediencia directa, toxicidad. <strong>Sanción:</strong> Expulsión inmediata. Bloqueo de canales. Tu eco será borrado del registro.</p>
+                </div>
+             </section>
+             <footer class="text-center mt-4"><p class="text-xs text-gray-500">[La Directiva Observa. Actúa en Consecuencia.]</p></footer>
+        </section>
+    </div>
+
+    <!-- SCRIPT DE NAVEGACIÓN -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page-content');
+
+            const renderIcons = () => {
+                if (typeof lucide !== 'undefined') {
+                    try { lucide.createIcons(); } catch (e) { /* Fallo silencioso */ }
+                }
+            };
+
+            const showPage = (targetId) => {
+                pages.forEach(page => page.classList.add('hidden'));
+                const targetPage = document.getElementById(targetId);
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                    targetPage.classList.add('fade-in');
+                }
+
+                navLinks.forEach(link => {
+                    if (link.dataset.target) {
+                        link.classList.toggle('active', link.dataset.target === targetId);
+                    }
+                });
+
+                renderIcons();
+                window.scrollTo(0, 0);
+            };
+
+            navLinks.forEach(link => {
+                if (link.dataset.target) {
+                    link.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        showPage(link.dataset.target);
+                    });
+                }
+            });
+
+            renderIcons();
+        });
+    </script>
+</body>
+</html>
